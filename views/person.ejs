@@ -1,0 +1,53 @@
+<!-- // 201935325-이호성 -->
+<% if(persons.length>0){ %>
+<table class="table table-bordered border-primary">
+  <thead>
+    <tr>
+      <td>아이디</td>
+      <td>비밀번호</td>
+      <td>이름</td>
+      <td>주소</td>
+      <td>전화번호</td>
+      <td>생일</td>
+      <td>클래스</td>
+      <td>포인트</td>
+      <% if (vu === 'u') { %>
+      <td></td>
+      <td></td>
+      <% } %>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (let i = 0; i < persons.length; i++) { %>
+    <tr>
+      <td><%= persons[i].loginid %></td>
+      <td><%= persons[i].password %></td>
+      <td><%= persons[i].name %></td>
+      <td><%= persons[i].address %></td>
+      <td><%= persons[i].tel %></td>
+      <td><%= persons[i].birth %></td>
+      <td><%= persons[i].class %></td>
+      <td><%= persons[i].point %></td>
+      <% if (vu === 'u') { %>
+      <td>
+        <a href="/person/update/<%= persons[i].loginid %>">수정</a>
+      </td>
+      <td>
+        <a
+          href="/person/delete/<%= persons[i].loginid %>"
+          onclick='if(confirm("정말로 삭제하시겠습니까?")==false){ return false }'
+          >삭제</a
+        >
+      </td>
+      <% } %>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+<% }else{ %>
+<table class="table table-bordered border-primary">
+  <tr>
+    <td>자료 없음</td>
+  </tr>
+</table>
+<% } %>

@@ -1,0 +1,35 @@
+<!-- // 201935325-이호성 -->
+<!-- merchandise.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merchandise List</title>
+</head>
+<body>
+<% if(merchandiseList.length >0){ %>
+  <table class="table table-bordered">
+    <% for(let i=0; i<merchandiseList.length; i++) { %>
+      <tr>
+        <td><img src="<%=merchandiseList[i].image%>" style="width:100px;height:100px;"></td>
+        <td><%= merchandiseList[i].name %></td>
+        <td><%= merchandiseList[i].price %></td>
+        <td><%= merchandiseList[i].brand %></td>
+        <% if (vu === 'u') { %>
+            <td><a href="/merchandise/update/<%= merchandiseList[i].mer_id %>">수정</a></td>
+            <td><a href="/merchandise/delete/<%= merchandiseList[i].mer_id %>"  onclick='if(confirm("정말로 삭제하시겠습니까?")==false){ return false }'>삭제</a></td>
+          <% } %>
+      </tr>
+    <% } %>
+  </table>
+  <% } else {%>
+  <table class="table table-bordered">
+    <tr>
+      <td>자료 없음</td>
+    </tr>
+  </table>
+  <% } %>
+</body>
+</html>

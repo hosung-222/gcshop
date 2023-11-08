@@ -1,0 +1,88 @@
+<!-- // 201935325-이호성 -->
+<!-- merchandiseCU.ejs -->
+
+<div class="container">
+  <script>
+    function displayFileName() {
+      var fileName = $("#file").val();
+      $(".upload-name").val(fileName);
+    }
+  </script>
+  <% if(mode == "create") {%>
+  <h2>상품 등록</h2>
+  <form
+    action="/merchandise/create_process"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <% }%> <% if(mode == "update") {%>
+    <h2>상품 수정</h2>
+    <form
+      action="/merchandise/update_process"
+      method="post"
+      enctype="multipart/form-data"
+    > 
+	<input type="hidden" name="mer_id" value="<%= merchandise.mer_id %>" />
+	<% }%>
+    <div class="mb-3">
+      <label class="form-label" for="id">카테고리</label>
+      <select name="category" id="id">
+        <% for (let i = 0; i < categories.length; i++) { %>
+        <option value="<%= categories[i].sub_name %>">
+          <%= categories[i].sub_name %>
+        </option>
+        <% } %>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="name">제품명</label>
+      <input class="form-control" type="text" name="name" style="width: 300px"
+      <% if(mode == "update"){ %> value="<%= merchandise.name %>" <% } %> />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="price">가격</label>
+      <input class="form-control" type="text" name="price" style="width: 300px"
+      <% if(mode == "update"){ %> value="<%= merchandise.price %>" <% } %> />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="stock">재고</label>
+      <input class="form-control" type="text" name="stock" style="width: 300px"
+      <% if(mode == "update"){ %> value="<%= merchandise.stock %>" <% } %> />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="brand">브랜드</label>
+      <input class="form-control" type="text" name="brand" style="width: 300px"
+      <% if(mode == "update"){ %> value="<%= merchandise.brand %>" <% } %> />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="supplier">공급자</label>
+      <input class="form-control" type="text" name="supplier" style="width:
+      300px" <% if(mode == "update"){ %> value="<%= merchandise.supplier %>" <%
+      } %> />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="sale_yn">할인여부</label>
+      <input class="form-control" type="text" name="sale_yn" style="width:
+      300px" <% if(mode == "update"){ %> value="<%= merchandise.sale_yn %>" <% }
+      %> />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="sale_price">할인가격</label>
+      <input class="form-control" type="text" name="sale_price" style="width:
+      300px" <% if(mode == "update"){ %> value="<%= merchandise.sale_price %>"
+      <% } %> />
+    </div>
+    <div class="mb-3">
+      <input class="upload-name" <% if(mode == "update"){ %>
+      value="<%=merchandise.image %>" <% }else{ %> value ="" <% } %>
+      name="image" placeholder="이미지파일" />
+      <input
+        type="file"
+        id="file"
+        name="uploadFile"
+        onchange="displayFileName()"
+      />
+    </div>
+    <button class="btn btn-outline-primary btn-sm" type="submit">입력</button>
+  </form>
+</div>
